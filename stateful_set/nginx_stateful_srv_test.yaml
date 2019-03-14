@@ -8,6 +8,6 @@ spec:
   ports:
     - port: 80
       name: web
-      clusterIP: none
-      selector:
-        app: nginx-stateful
+  clusterIP: None
+  selector:
+    app: nginx-stateful
