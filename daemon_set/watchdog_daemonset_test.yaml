@@ -1,0 +1,11 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: watch-dog
+spec:
+  tolerations:
+    - key: node-role.kubernetes.io/master
+      effect: NoSchedule
+  container:
+    - name: watch-dog
+      image: redis
