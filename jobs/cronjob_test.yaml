@@ -1,0 +1,18 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: cron-test
+sepc:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: job-test
+              image: busybox
+              args:
+                - /bin/sh
+                - -c
+                - echo hello k8s cronjob
+              restartPolicy: OnFailure
