@@ -3,9 +3,17 @@ kind: DaemonSet
 metadata:
   name: watch-dog
 spec:
-  tolerations:
-    - key: node-role.kubernetes.io/master
-      effect: NoSchedule
-  container:
-    - name: watch-dog
-      image: redis
+  selector:
+    matchLabels:
+      daemon: watch-dog
+  template:
+    metadata:
+      labels:
+        daemon: watch-dog
+    spec:
+      tolerations:
+        - key: node-role.kubernetes.io/master
+          effect: NoSchedule
+      containers:
+        - name: watch-dog
+          image: redis
