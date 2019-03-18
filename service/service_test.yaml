@@ -1,0 +1,13 @@
+apiVersion: vi
+kind: Service
+metadata:
+  name: service-test
+spec:
+  selector:
+    app: service-test-pods
+  ports:
+  - name: default
+    port: 9527
+    targetPort: 6739
+    protocal: TCP
+
