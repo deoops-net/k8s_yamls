@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: get-configmap
+  labels:
+    name: get-configmap
+spec:
+  containers:
+    - name: get-configmap
+      image: dayuoba/gopods
+      ports:
+        - containerPort: 9999
+      volumeMounts:
+      - name: misc-configmap-mongo-hosts
+        mountPath: /var/lib/myconfig
+
+  volumes:
+    - name: misc-configmap-mongo-hosts
+      configMap:
+        name: misc-configmap-mongo-hosts
