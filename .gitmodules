@@ -1,0 +1,3 @@
+[submodule "operator/etcd-operator"]
+	path = operator/etcd-operator
+	url = https://github.com/coreos/etcd-operator
