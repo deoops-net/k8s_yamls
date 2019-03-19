@@ -1,0 +1,48 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name:  get-configmap-deployment
+  labels:
+    name:  get-configmap-deployment
+spec:
+  replicas: 3
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        name:  get-configmap
+    spec:
+      containers:
+      - image:  dayuoba/gopods
+        name:  get-configmap
+        resources:
+          requests:
+            memory: "1G"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 9999
+          initialDelaySeconds: 90
+          timeoutSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 9999
+          initialDelaySeconds: 30
+          timeoutSeconds: 10
+        ports:
+        - containerPort:  9999
+          name:  my-name
+        volumeMounts:
+        - mountPath: /var/lib/myconfig
+          name: misc-configmap-mongo-hosts
+      volumes:
+        - name: misc-configmap-mongo-hosts
+          configMap:
+            name: misc-configmap-mongo-hosts
+      restartPolicy: Always
+      imagePullPolicy: Always
