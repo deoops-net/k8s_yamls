@@ -4,8 +4,8 @@ metadata:
   name:  get-configmap-service
 spec:
   selector:
-      app: get-configmap-deployment
-  clusterIP: None
+    app: get-configmap-deployment
+  type: ClusterIP
   ports:
   - name:  get-configmap-port
     port:  12345
