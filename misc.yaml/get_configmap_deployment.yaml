@@ -45,4 +45,3 @@ spec:
           configMap:
             name: misc-configmap-mongo-hosts
       restartPolicy: Always
-      imagePullPolicy: Always
