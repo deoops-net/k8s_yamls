@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name:  get-configmap-service
+spec:
+  selector:
+    labels:
+      app: get-configmap-deployment
+  clusterIP: None
+  ports:
+  - name:  get-configmap-port
+    port:  12345
+    targetPort:  9999
