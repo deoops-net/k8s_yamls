@@ -7,6 +7,9 @@ import (
 	"os"
 )
 
+type iface interface {
+}
+
 // It's a short code for getting config map from /var/lib/myconfig
 func main() {
 	fd, err := os.Open("/var/lib/myconfig/mongoHosts")
@@ -29,6 +32,11 @@ func main() {
 	}
 
 	http.HandleFunc("/health", func(res http.ResponseWriter, req *http.Request) {
+		hostname, err := os.Hostname()
+		if err != nil {
+			log.Println(err)
+		}
+		log.Println("get request, ", hostname)
 		res.WriteHeader(200)
 	})
 
