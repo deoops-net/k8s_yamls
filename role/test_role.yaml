@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Role
+metadata:
+  name: mytestrole
+  namespace: default
+rules:
+  - apiGroups: [""]
+    verbs:
+      - get
+      - watch
+      - list
+    resources:
+      - pods
+
